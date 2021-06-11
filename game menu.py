@@ -21,6 +21,7 @@ while var ==1 :
     choice = int(input())
     if choice == 1:
         var = 2
+        #I got this picture from https://www.asciiart.eu/animals/reptiles/dinosaurs
         print("""
                __
               / _)
@@ -34,7 +35,7 @@ while var ==1 :
         if choice == 1:
             var = 1
         
-        
+        #I got this art from https://www.asciiart.eu/animals/reptiles/dinosaurs
     if choice == 2:
         print("""
 ,-----.
