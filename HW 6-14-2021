@@ -1,0 +1,84 @@
+#Jadon Lee
+# 06/11/2021 
+#Word Game 
+# We are creating a list of words 
+# randomly select a word from the list for the user to guess 
+# give the user some turns 
+# show the word to the user with the characters guessed   
+# play the game as long as the user has turns or has guessed the word 
+import datetime
+import random 
+gameWords= ['python','java','trackpad','computer','keyboard','geeks','laptop','headphones','charger','mouse','software','hardware'] 
+score=0 #to total the number of wins 
+name=input("What is your name ") 
+varChoice =1
+def menu():
+    print("*"*45)
+    print("*"," "*7,"Main Menu"," "*23,"*")
+    print("*"," "*41,"*")
+    print("*"," "*2,"1- play"," "*30,"*")
+    print("*"," "*2,"1- Print Scores"," "*22,"*")
+    print("*"," "*2,"3- Exit Game"," "*25,"*")
+    print("*"*45)
+    #it wont let me put varChoice = input("enter either 1, 2 or 3") here
+menu()
+varChoice = input("Enter either 1,2,or 3")
+if varChoice == "1": 
+        print("Good luck!") 
+        word=random.choice(gameWords) 
+        counter=len(word) 
+        print(counter) 
+        print (word)    #delete when we finish the code 
+        turns= 10   #should we conider controlling this number when he/she misses 
+        guesses='' 
+        while turns>0 and counter >0: 
+            for char in word: 
+                if char in guesses: 
+                    print(char,end=' ') 
+                else: 
+                    print('_', end =' ') 
+            newGuess=input("\n\n Give me a letter ") 
+            #check that the new letter has not been used before 
+            if newGuess not in guesses: 
+                if newGuess not in word: 
+                    turns -=1    #       turns = turns -1 
+                    print("Wrong! You have  ", turns, "guesses left") 
+                else: 
+                    counter -=word.count(newGuess) #delete repeated letters 
+                    print("nice guess!") 
+                guesses += newGuess 
+            else: 
+                print("you used this one already") 
+        
+        if counter ==0: 
+            print("Congradulations") 
+            score +=1 
+        else: 
+            print("Sorry, try harder next time") 
+            # find a way to decide if the person won the game or not  
+            # keep a count of how many words they guessed    
+            # #ask user if the want to play again 
+            
+        answer=input("Do you want to play again? ").upper() 
+        if "Y" in answer:
+            varChoice = 1
+        if "N" in answer:
+            menu()
+            varChoice = input("Enter either 1,2,or 3")
+if varChoice == "2": #This doesnt return to menu
+    print(name," your score is: ", score) 
+    answer=input("Do you want to go the menu? ").upper() 
+    if "Y" in answer:
+        menu()
+        varChoice = input("Enter either 1,2,or 3")
+    if "N" in answer:
+        varChoice = 2
+
+if varChoice =="3":
+    time = datetime
+    BOOK = open("name.txt", 'w+')
+    BOOK.write(name)
+    #BOOK.write(score) wont let me because not a string
+    #BOOK.write(datetime) wont let me because not a string
+    BOOK.close()
+    print("goodbye", name)
