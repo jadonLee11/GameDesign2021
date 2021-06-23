@@ -1,0 +1,57 @@
+#Jado Lee
+#6/22/2021
+#first draft of my final project for game design
+import math, random, sys, time, os 
+
+def replay():
+    print("do you want to play again?")
+    level = input()
+    level = level.lower()
+    if "y" in level:
+        return True 
+    else:
+        return False
+
+def menu():
+    print("""
+    **********************
+    *    Game menu       *
+    *                    *
+    * 1. Level 1         *
+    * 2. Level 2         *
+    * 3. Level 3         *
+    * 4. print scores    *
+    * 5. Exit game       *
+    **********************
+    """)
+    print("enter either 1, 2, 3, 4, or 5".title(), end = "  ")
+    choice = input()
+    choice = choice.lower()
+    return choice
+#main function
+choice = menu()
+while choice != "5":
+    if  choice == "1":
+        convert = True
+        while convert: 
+            print("level 1")
+            convert= replay()
+
+    if choice == "2":
+        convert = True
+        while convert:
+            print("level 2")
+            convert= replay()
+       
+    if choice == "3" :
+        convert = True
+        while convert: 
+            print("level 3")
+            convert= replay()
+    if choice == "4" :
+        convert = True
+        while convert: 
+            print("scoreboard")
+            convert= replay()
+    choice = menu()
+print("Goodbye, have a nice day!".center(100))
