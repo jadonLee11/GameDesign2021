@@ -1,0 +1,151 @@
+#Jadon Lee
+#6/22/2021
+#first draft of my final project for game design
+import math, random, sys, time, os, datetime
+dt=datetime.datetime.now() 
+pizza=str(dt.month)+"/"+str(dt.day)+"/"+str(dt.year)+"\t"+dt.strftime("%A")
+Scoreboard="Scoreboard.txt" 
+score = 0
+coinflip = ["head", "tails"]
+numberListEasy= ["1","2","3","4"]
+numberListMedium = ["1","2","3","4","5","6"]
+numberListImpossible= ["1","2","3","4","5","6"]
+def replay():
+    print("do you to do it again?")
+    level = input()
+    level = level.lower()
+    if "y" in level:
+        return True 
+    else:
+        return False
+
+def updateScore(score): 
+    FileWrite=open(Scoreboard,'a') 
+    line=line=name+"\t"+ pizza+ "\t\t"+str(score)
+    FileWrite.write("\n"+line) 
+    FileWrite.close() 
+
+def printScore(): 
+    FileRead=open(Scoreboard,'r') 
+    print(FileRead.read()) 
+    FileRead.close() 
+
+def menu():
+    print("""
+    **********************
+    *    Dino Safari     *
+    *                    *
+    * 1. Level 1         *
+    * 2. Level 2         *
+    * 3. Level 3         *
+    * 4. print score     *
+    * 5. instructions    *
+    * 6. Exit game       *
+    **********************
+    """)
+    print("enter either 1, 2, 3, 4, or 5".title(), end = "  ")
+    choice = input()
+    choice = choice.lower()
+    return choice
+
+def easy(score):
+    convert = True
+    while convert: 
+        random.shuffle(numberListEasy)
+        print(numberListEasy)
+        time.sleep(2)
+        os.system('cls')
+        answer= input("What are the numbers?")
+        if answer == numberListEasy[0]+numberListEasy[1]+numberListEasy[2]+numberListEasy[3]:
+            score +=1 
+            print("congradulations, you won")
+
+        else:
+            print("better luck next time")
+            score -=1
+        convert= replay()
+        os.system('cls')
+    updateScore(score)
+    
+
+        
+
+def medium(score):
+    convert = True
+    while convert:
+        random.shuffle(numberListMedium)
+        print(numberListMedium)
+        time.sleep(2)
+        os.system('cls')
+        answer= input("What are the numbers?")
+        if answer == numberListMedium[0]+numberListMedium[1]+numberListMedium[2]+numberListMedium[3]+numberListMedium[4]+numberListMedium[5]:
+            score +=2
+            print("congradulations, you won")
+        else:
+            print("better luck next time")
+            score -=2
+        convert= replay()
+        os.system('cls')
+    updateScore(score)
+
+def impossible(score):
+    convert = True
+    while convert:
+        random.shuffle(numberListImpossible)
+        print(numberListImpossible)
+        time.sleep(1)
+        os.system('cls')
+        answer= input("What are the numbers?")
+        if answer == numberListImpossible[0]+numberListImpossible[1]+numberListImpossible[2]+numberListImpossible[3]+numberListImpossible[4]+numberListImpossible[5]:
+            score +=5
+            print("congradulations, you won")
+        else:
+            print("better luck next time")
+            score -=3
+        convert= replay()
+        os.system('cls')
+    updateScore(score)
+def instructions():
+    convert = True
+    while convert:
+        print("""
+        Instructions:
+        You will pick a level, then a group of numbers will show up on your screen.
+        Your task is to repeat the code of numbers back to the computer too get points.
+        The harder the difficulty, the harder it will be to complete. Every win on easy 
+        will score you one point, but every lose, you will lose one. every win on medium will 
+        score you two points, but every lose will take away two points. Every win on 
+        impossible will award five points, but every lose will take away three points.
+        your scores will be saved separately for each level. there is a change
+        """)
+        convert= replay()
+        os.system('cls')
+
+def scoreBoardLevel():
+    convert = True
+    while convert:
+        printScore()
+        convert= replay()
+        os.system('cls')
+
+os.system('cls') #main function
+name=input("What is your name ") 
+os.system('cls')
+choice = menu()
+os.system('cls')
+while choice != "6":
+    if  choice == "1":
+        easy(score)
+        
+    if choice == "2":
+        medium(score)
+
+    if choice == "3" :
+        impossible(score)
+    if choice == "4" :
+        scoreBoardLevel()
+    if choice == "5":
+        instructions()
+    choice = menu()
+    os.system('cls')
+print("Goodbye, have a nice day!".center(100))
