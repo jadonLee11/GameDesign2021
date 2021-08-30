@@ -19,3 +19,15 @@ if "apples" in myFruits:
  print("I have apples")
 else:
  print("I need apples")
+
+
+
+ import random
+fruity = ("apple", "banana", "kiwi")
+print(fruity)
+temp = list(fruity)
+temp.insert(1,"papaya")
+fruity = tuple(temp)
+print (fruity)
+
+print("your lucky fruit is", myFruits[indx]) 

@@ -8,20 +8,29 @@
 # play as long as the user has turns or has guessed the word
 import random
 
-gameWords= ['ppython','jjava','ttrackpad','ccomputer','kkeyboard','ggeeks','llaptop','hheadphones','ccharger','mmouse','ssoftware','hhardware']
+gameWords= ['python','java','trackpad','computer','keyboard','geeks','laptop','headphones','charger','mouse','software','hardware']
 name =input("What is your name?")
 print(name, end = " ")
 answer = input(" Do you want to play? ").upper()
 print("\n ",gameWords) #delete when code works properly
 
-while "Y" in answer:
+
+def GamePause(): #my function to ask if they want to play again
+    print("do you want to play again?")
+    level = input()
+    level = level.lower()
+    if "yes" in level:
+        return True
+    if "no" in level:
+        return False
+
+def level():
     print(name," Good luck")
     word=random.choice(gameWords)
     print(word)
     turns=10  # find better way to create turns
     guesses=''
     counter=len(word)
-    extraCounter = counter
     while turns >0 and counter>0:
         for char in word:
             if char in guesses:
@@ -37,5 +46,21 @@ while "Y" in answer:
         else:
             turns -= 1
             print ("Sorry that is wrong you still have ", turns," turns") 
+    if counter == 0:
+        print("good job, you won")
+    else:
+        print("you lost")
+
+def completeLevel():
+        level()
+        GamePause()
+        x = GamePause()
+        if x == True:
+            level()
+        else:
+            print("Goodbye")
+
+while "Y" in answer:
+    completeLevel()
     answer="n"
     print("Goodbye")
